@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { styles } from '../styles';
 import { i18n } from '../localization';
-import { scoreValue, getMedals } from '../utils';
+import { scoreValue, getMedals, formatScoreLabel } from '../utils';
 import { RootStackParamList, HoleScore, PlayerScore, PlayerHoleScore } from '../types';
 import { theme, cardStyles } from '../theme';
 
@@ -109,7 +109,7 @@ export function GameRecap({ route, navigation }: GameRecapProps) {
                       <View key={p} style={styles.recapPlayerCol}>
                         <Text style={styles.recapPlayerName}>{p}</Text>
                         <Text style={[styles.recapScoreValue, { color: scoreColor }]}>
-                          {hole[p] || '-'}
+                          {formatScoreLabel(hole[p]) || '-'}
                         </Text>
                       </View>
                     );

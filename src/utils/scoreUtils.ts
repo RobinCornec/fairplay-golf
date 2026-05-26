@@ -24,6 +24,24 @@ export const scoreValue = (label: ScoreLabel | string): number => {
 };
 
 /**
+ * Formats a score label for display.
+ * Transforms "Custom:N" into "+N" or "N".
+ * @param label The score label to format
+ * @returns Formatted label string
+ */
+export const formatScoreLabel = (label: string): string => {
+  if (label && label.startsWith('Custom:')) {
+    const value = label.split(':')[1];
+    const numValue = parseInt(value, 10);
+    if (!isNaN(numValue) && numValue > 0) {
+      return `+${numValue}`;
+    }
+    return value;
+  }
+  return label;
+};
+
+/**
  * Calculates the total scores for each player
  * @param players Array of player names
  * @param scores Array of hole scores

@@ -10,7 +10,8 @@ import {
   scoreValue, 
   calculateTotalScores, 
   calculateWolfScores, 
-  adjustWolfScores 
+  adjustWolfScores,
+  formatScoreLabel
 } from '../utils';
 import { RootStackParamList, GameData, HoleScore } from '../types';
 import { cardStyles, theme } from '../theme';
@@ -205,7 +206,7 @@ export function GameScore({ route, navigation }: GameScoreProps) {
                   icon="plus-circle"
                 >
                   {typeof scores[currentHole - 1][player] === 'string' && scores[currentHole - 1][player].startsWith('Custom:') 
-                    ? scores[currentHole - 1][player].split(':')[1] 
+                    ? formatScoreLabel(scores[currentHole - 1][player]) 
                     : i18n.t('custom')}
                 </Button>
               </View>
