@@ -1,5 +1,5 @@
 // Score label type
-export type ScoreLabel = 'Eagle' | 'Birdie' | 'Par' | 'Bogey' | 'Double' | 'Custom' | '';
+export type ScoreLabel = 'Eagle' | 'Birdie' | 'Par' | 'Bogey' | 'Double' | 'Custom' | '' | string;
 
 // Hole score type (player name to score label)
 export type HoleScore = Record<string, ScoreLabel>;

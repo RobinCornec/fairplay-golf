@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import { Text, Button, Card, Divider, Surface } from 'react-native-paper';
+import { Text, Button, Card } from 'react-native-paper';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { styles } from '../styles';
 import { i18n } from '../localization';
 import { scoreValue, getMedals, formatScoreLabel } from '../utils';
-import { RootStackParamList, HoleScore, PlayerScore, PlayerHoleScore } from '../types';
+import { RootStackParamList, PlayerScore, PlayerHoleScore } from '../types';
 import { theme, cardStyles } from '../theme';
 
 type GameRecapProps = {
@@ -44,17 +44,19 @@ export function GameRecap({ route, navigation }: GameRecapProps) {
         </Card.Content>
       </Card>
 
-      <Button
-        mode="contained"
-        onPress={() => navigation.reset({
-          index: 0,
-          routes: [{ name: 'GameSetup' }],
-        })}
-        style={styles.primaryButton}
-        textColor="white"
-      >
-        {i18n.t('returnHome')}
-      </Button>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
+        <Button
+          mode="contained"
+          onPress={() => navigation.reset({
+            index: 0,
+            routes: [{ name: 'GameSetup' }],
+          })}
+          style={[styles.primaryButton, { flex: 1, marginRight: 8 }]}
+          textColor="white"
+        >
+          {i18n.t('returnHome')}
+        </Button>
+      </View>
 
       <Text variant="titleMedium" style={[styles.subtitle, { marginTop: 20 }]}>
         {i18n.t('holeByHoleScore')}
@@ -75,7 +77,7 @@ export function GameRecap({ route, navigation }: GameRecapProps) {
         };
 
         if (a.value === b.value && b.value === c.value) {
-          players.forEach(p => points[p] = 1);
+          players.forEach(p => points[p] = 2);
         } else if (a.value === b.value) {
           points[a.name] = 3;
           points[b.name] = 3;
@@ -91,7 +93,7 @@ export function GameRecap({ route, navigation }: GameRecapProps) {
         return (
           <Card key={index} style={styles.recapCard}>
             <Card.Title 
-              title={`${i18n.t('hole')} ${index + 1}`} 
+              title={`${i18n.t('hole')} ${index + 1}`}
               titleStyle={cardStyles.title}
             />
             <Card.Content>

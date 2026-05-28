@@ -1,5 +1,5 @@
 import { MD3LightTheme, configureFonts } from 'react-native-paper';
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 // Get screen dimensions for responsive design
 export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -50,7 +50,7 @@ export const spacing = {
 };
 
 // Card styles
-export const cardStyles = {
+export const cardStyles = StyleSheet.create({
   container: {
     backgroundColor: colors.surface,
     borderRadius: 8,
@@ -96,7 +96,7 @@ export const cardStyles = {
     lineHeight: 26,
     marginRight: spacing.xs,
   },
-};
+});
 
 // Button styles
 export const buttonStyles = {

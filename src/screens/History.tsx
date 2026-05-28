@@ -27,8 +27,8 @@ export function History({ navigation }: HistoryProps) {
     await AsyncStorage.setItem('history', JSON.stringify(newList));
   };
 
-  const openGame = (game: GameData) => {
-    if (game.inProgress) {
+  const openGame = (game: GameData, update: boolean|undefined) => {
+    if (update) {
       // Continue in-progress game
       navigation.navigate('GameScore', {
         players: game.players,
@@ -42,6 +42,7 @@ export function History({ navigation }: HistoryProps) {
         scores: game.scores,
         totalScores: game.totalScores,
         wolfScores: game.wolfScores,
+        game: game,
       });
     }
   };
@@ -70,7 +71,7 @@ export function History({ navigation }: HistoryProps) {
         </Card>
       )}
 
-      {games.slice().reverse().map((p, i) => {
+      {games.slice().reverse().map((p: GameData, i: number) => {
         const displayIndex = games.length - 1 - i; // because we reverse()
         return (
           <Card 
@@ -103,7 +104,7 @@ export function History({ navigation }: HistoryProps) {
               <View style={[styles.historyActions, { flexDirection: 'column' }]}>
                 <Button
                   mode={p.inProgress ? "contained" : "outlined"}
-                  onPress={() => openGame(p)}
+                  onPress={() => openGame(p, p.inProgress)}
                   style={[
                     p.inProgress ? styles.primaryButton : styles.secondaryButton, 
                     { marginBottom: spacing.s }
@@ -138,6 +139,16 @@ export function History({ navigation }: HistoryProps) {
                     </Button>
                   </View>
                 ) : (
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Button
+                      mode="outlined"
+                      onPress={() => openGame(p, true)}
+                      style={[styles.secondaryButton, { flex: 1, marginRight: spacing.s }]}
+                      textColor={theme.colors.primary}
+                      icon="pencil"
+                  >
+                    {i18n.t('editScores')}
+                  </Button>
                   <Button
                     mode="outlined"
                     textColor={theme.colors.error}
@@ -148,7 +159,8 @@ export function History({ navigation }: HistoryProps) {
                   >
                     {i18n.t('delete')}
                   </Button>
-                )}
+                </View>
+                    )}
               </View>
             </Card.Content>
           </Card>

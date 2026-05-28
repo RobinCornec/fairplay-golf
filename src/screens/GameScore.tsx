@@ -13,7 +13,7 @@ import {
   adjustWolfScores,
   formatScoreLabel
 } from '../utils';
-import { RootStackParamList, GameData, HoleScore } from '../types';
+import {RootStackParamList, GameData, HoleScore, ScoreLabel} from '../types';
 import { cardStyles, theme } from '../theme';
 
 type GameScoreProps = {
@@ -90,7 +90,7 @@ export function GameScore({ route, navigation }: GameScoreProps) {
         players,
         scores,
         totalScores,
-        wolfScores: adjustedWolfScores
+        wolfScores: adjustedWolfScores,
       });
     }
   };
@@ -108,7 +108,7 @@ export function GameScore({ route, navigation }: GameScoreProps) {
     }
 
     const newScores = [...scores];
-    newScores[currentHole - 1][currentPlayer] = `Custom:${scoreNum}`;
+    newScores[currentHole - 1][currentPlayer] = `Custom:${scoreNum}` as ScoreLabel;
     setScores(newScores);
     setCustomScoreDialogVisible(false);
   };
@@ -174,7 +174,7 @@ export function GameScore({ route, navigation }: GameScoreProps) {
                       mode={scores[currentHole - 1][player] === label && scores[currentHole - 1][player] !== '' ? 'contained' : 'outlined'}
                       onPress={() => {
                         const newScores = [...scores];
-                        newScores[currentHole - 1][player] = label;
+                        newScores[currentHole - 1][player] = label as ScoreLabel;
                         setScores(newScores);
                       }}
                       style={[
