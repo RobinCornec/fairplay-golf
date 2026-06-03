@@ -37,9 +37,9 @@ export function SplashScreen({ navigation }: SplashScreenProps) {
       }),
     ]).start();
 
-    // Navigate to GameSetup after 3 seconds
+    // Navigate to Home after 3 seconds
     const timer = setTimeout(() => {
-      navigation.replace('GameSetup');
+      navigation.replace('Home');
     }, 3000);
 
     return () => clearTimeout(timer);

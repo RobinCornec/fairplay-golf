@@ -32,6 +32,7 @@ export interface GameData {
 // Navigation types
 export type RootStackParamList = {
   SplashScreen: undefined;
+  Home: undefined;
   GameSetup: undefined;
   GameScore: { 
     players: string[]; 

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Alert, ScrollView } from 'react-native';
-import { Text, TextInput, Button, Card } from 'react-native-paper';
+import { Text, TextInput, Button, Card, IconButton } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from '../styles';
 import { i18n } from '../localization';
 import { RootStackParamList, GameData } from '../types';
 import { cardStyles, theme, spacing, responsiveSize } from '../theme';
+import { RulesModal } from '../components/RulesModal';
 
 type GameSetupProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'GameSetup'>;
@@ -16,6 +17,7 @@ export function GameSetup({ navigation }: GameSetupProps) {
   const [players, setPlayers] = useState(['', '', '']);
   const [holes, setHoles] = useState('9');
   const [inProgressGame, setInProgressGame] = useState<GameData | null>(null);
+  const [rulesVisible, setRulesVisible] = useState(false);
 
   // Check for in-progress games when component mounts
   useEffect(() => {
@@ -100,7 +102,18 @@ export function GameSetup({ navigation }: GameSetupProps) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text variant="titleLarge" style={styles.title}>{i18n.t('title')}</Text>
+      <Text variant="titleLarge" style={styles.title}>
+        {i18n.t('title')}
+        <IconButton
+          icon="help-circle-outline"
+          size={24}
+          iconColor={theme.colors.primary}
+          onPress={() => setRulesVisible(true)}
+          style={{ margin: 0, padding: 0 }}
+        />
+      </Text>
+
+      <RulesModal visible={rulesVisible} onDismiss={() => setRulesVisible(false)} />
 
       {inProgressGame && (
         <Card style={[styles.card, { backgroundColor: theme.colors.secondary + '20' }]}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, ScrollView, Alert, TextInput } from 'react-native';
-import { Text, Button, Dialog, Portal, Card } from 'react-native-paper';
+import { Text, Button, Dialog, Portal, Card, IconButton } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
@@ -15,6 +15,7 @@ import {
 } from '../utils';
 import {RootStackParamList, GameData, HoleScore, ScoreLabel} from '../types';
 import { cardStyles, theme } from '../theme';
+import { RulesModal } from '../components/RulesModal';
 
 type GameScoreProps = {
   route: RouteProp<RootStackParamList, 'GameScore'>;
@@ -34,6 +35,7 @@ export function GameScore({ route, navigation }: GameScoreProps) {
   const [customScoreValue, setCustomScoreValue] = useState('');
   const [currentPlayer, setCurrentPlayer] = useState('');
   const [gameId] = useState<string>(game?.date || new Date().toISOString());
+  const [rulesVisible, setRulesVisible] = useState(false);
 
   const totalScores = calculateTotalScores(players, scores);
   const wolfScores = calculateWolfScores(players, scores);
@@ -153,7 +155,18 @@ export function GameScore({ route, navigation }: GameScoreProps) {
           </Dialog.Actions>
         </Dialog>
       </Portal>
-      <Text variant="titleLarge" style={styles.title}>{i18n.t('hole')} {currentHole} / {holes}</Text>
+      <Text variant="titleLarge" style={styles.title}>
+        {i18n.t('hole')} {currentHole} / {holes}
+        <IconButton
+          icon="help-circle-outline"
+          size={24}
+          iconColor={theme.colors.primary}
+          onPress={() => setRulesVisible(true)}
+          style={{ margin: 0, padding: 0 }}
+        />
+      </Text>
+
+      <RulesModal visible={rulesVisible} onDismiss={() => setRulesVisible(false)} />
 
       <Card style={styles.card}>
         <Card.Content>

@@ -47,10 +47,7 @@ export function GameRecap({ route, navigation }: GameRecapProps) {
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
         <Button
           mode="contained"
-          onPress={() => navigation.reset({
-            index: 0,
-            routes: [{ name: 'GameSetup' }],
-          })}
+          onPress={() => navigation.navigate('Home')}
           style={[styles.primaryButton, { flex: 1, marginRight: 8 }]}
           textColor="white"
         >

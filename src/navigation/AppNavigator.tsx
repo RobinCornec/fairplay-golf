@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SplashScreen, GameSetup, GameScore, GameRecap, History } from '../screens';
+import { SplashScreen, Home, GameSetup, GameScore, GameRecap, History } from '../screens';
 import { RootStackParamList } from '../types';
 import { i18n } from '../localization';
 import { theme } from '../theme';
@@ -29,6 +29,13 @@ export function AppNavigator() {
         name="SplashScreen" 
         component={SplashScreen} 
         options={{ headerShown: false }} 
+      />
+      <Stack.Screen 
+        name="Home" 
+        component={Home} 
+        options={{ 
+          title: 'GWolf',
+        }} 
       />
       <Stack.Screen 
         name="GameSetup" 
