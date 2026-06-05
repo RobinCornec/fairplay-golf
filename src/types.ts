@@ -23,10 +23,11 @@ export interface GameData {
   players: string[];
   scores: HoleScore[];
   totalScores: PlayerScore;
-  wolfScores: PlayerScore;
+  game6pointScores: PlayerScore;
   inProgress?: boolean;
   holes?: number;
   currentHole?: number;
+  gameType?: string;
 }
 
 // Navigation types
@@ -38,12 +39,13 @@ export type RootStackParamList = {
     players: string[]; 
     holes: number;
     game?: GameData; // Optional game data for continuing a game
+    gameType?: string;
   };
   GameRecap: {
     players: string[];
     scores: HoleScore[];
     totalScores: PlayerScore;
-    wolfScores: PlayerScore;
+    game6pointScores: PlayerScore;
   };
   History: undefined;
 };

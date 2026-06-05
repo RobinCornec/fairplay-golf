@@ -1,4 +1,4 @@
-# GWolf App
+# FairPlay Golf
 
 A mobile application to track golf scores with the "Chouette" points system.
 
@@ -7,7 +7,7 @@ A mobile application to track golf scores with the "Chouette" points system.
 The project has a modular architecture for better maintainability:
 
 ```
-gwolf-app/
+fairplay-golf/
 ├── App.tsx                  # Application entry point
 ├── src/                     # Main source folder
 │   ├── components/          # Reusable UI components

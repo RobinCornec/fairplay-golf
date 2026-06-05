@@ -34,7 +34,7 @@ export function AppNavigator() {
         name="Home" 
         component={Home} 
         options={{ 
-          title: 'GWolf',
+          title: 'FairPlay',
         }} 
       />
       <Stack.Screen 

@@ -61,16 +61,16 @@ export const calculateTotalScores = (
 };
 
 /**
- * Calculates the wolf scores for each player
+ * Calculates the game 6point scores for each player
  * @param players Array of player names
  * @param scores Array of hole scores
- * @returns Record of player names to wolf scores
+ * @returns Record of player names to game 6point scores
  */
-export const calculateWolfScores = (
+export const calculateGame6pointScores = (
   players: string[], 
   scores: HoleScore[]
 ): PlayerScore => {
-  const wolfScores = players.reduce((acc, player) => {
+  const game6pointScores = players.reduce((acc, player) => {
     acc[player] = 0;
     return acc;
   }, {} as PlayerScore);
@@ -96,38 +96,38 @@ export const calculateWolfScores = (
     const c = holeScores[2];
 
     if (a.value === b.value && b.value === c.value) {
-      wolfScores[a.name] += 2;
-      wolfScores[b.name] += 2;
-      wolfScores[c.name] += 2;
+      game6pointScores[a.name] += 2;
+      game6pointScores[b.name] += 2;
+      game6pointScores[c.name] += 2;
     } else if (a.value === b.value) {
-      wolfScores[a.name] += 3;
-      wolfScores[b.name] += 3;
+      game6pointScores[a.name] += 3;
+      game6pointScores[b.name] += 3;
     } else if (b.value === c.value) {
-      wolfScores[a.name] += 4;
-      wolfScores[b.name] += 1;
-      wolfScores[c.name] += 1;
+      game6pointScores[a.name] += 4;
+      game6pointScores[b.name] += 1;
+      game6pointScores[c.name] += 1;
     } else {
-      wolfScores[a.name] += 4;
-      wolfScores[b.name] += 2;
+      game6pointScores[a.name] += 4;
+      game6pointScores[b.name] += 2;
     }
   });
 
-  return wolfScores;
+  return game6pointScores;
 };
 
 /**
- * Adjusts wolf scores to make the minimum score 0
+ * Adjusts game 6point scores to make the minimum score 0
  * @param players Array of player names
- * @param wolfScores Record of player names to wolf scores
- * @returns Record of player names to adjusted wolf scores
+ * @param game6pointScores Record of player names to game 6point scores
+ * @returns Record of player names to adjusted game 6point scores
  */
-export const adjustWolfScores = (
+export const adjustGame6pointScores = (
   players: string[], 
-  wolfScores: PlayerScore
+  game6pointScores: PlayerScore
 ): PlayerScore => {
-  const minWolf = Math.min(...players.map(p => wolfScores[p]));
+  const minScore = Math.min(...players.map(p => game6pointScores[p]));
   return players.reduce((acc, p) => {
-    acc[p] = wolfScores[p] - minWolf;
+    acc[p] = game6pointScores[p] - minScore;
     return acc;
   }, {} as PlayerScore);
 };

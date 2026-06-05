@@ -50,7 +50,7 @@ export function GameSetup({ navigation }: GameSetupProps) {
       Alert.alert(i18n.t('error'), i18n.t('missingPlayerNames'));
       return;
     }
-    navigation.navigate('GameScore', { players, holes: parseInt(holes, 10) });
+    navigation.navigate('GameScore', { players, holes: parseInt(holes, 10), gameType: '6point' });
   };
 
   const continueGame = () => {
@@ -130,7 +130,7 @@ export function GameSetup({ navigation }: GameSetupProps) {
                 <View key={player} style={styles.gridCol}>
                   <Text style={styles.playerName}>{player}</Text>
                   <Text style={styles.historyPlayer}>
-                    <Text style={{ fontWeight: 'bold' }}>{inProgressGame.wolfScores[player]} 🦉</Text> ({inProgressGame.totalScores[player] > 0 ? '+' + inProgressGame.totalScores[player] : inProgressGame.totalScores[player]})
+                    <Text style={{ fontWeight: 'bold' }}>{inProgressGame.game6pointScores[player]} 🦉</Text> ({inProgressGame.totalScores[player] > 0 ? '+' + inProgressGame.totalScores[player] : inProgressGame.totalScores[player]})
                   </Text>
                 </View>
               ))}

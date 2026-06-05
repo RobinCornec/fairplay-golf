@@ -1,4 +1,5 @@
 import React from 'react';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -10,7 +11,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar style="dark" />
-      <PaperProvider theme={theme}>
+      <PaperProvider theme={theme} settings={{
+          icon: (props) => <MaterialCommunityIcons {...props} />,
+      }}>
         <NavigationContainer>
           <AppNavigator />
         </NavigationContainer>

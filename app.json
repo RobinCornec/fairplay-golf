@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "gwolf-app",
-    "slug": "gwolf-app",
+    "name": "FairPlay Golf",
+    "slug": "fairplay-golf",
     "version": "1.0.0",
-    "scheme": "gwolf",
+    "scheme": "fairplay",
     "orientation": "portrait",
-    "icon": "./assets/image.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/image.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0F3D2E"
     },
     "ios": {
       "supportsTablet": true
@@ -20,17 +20,11 @@
       "package": "com.robincornec.gwolf",
       "versionCode": 4,
       "permissions": [],
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "edgeToEdgeEnabled": true,
     },
     "plugins": [
-      "expo-localization"
+      "expo-localization",
+      "expo-asset"
     ],
     "extra": {
       "eas": {

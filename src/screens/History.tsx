@@ -41,8 +41,7 @@ export function History({ navigation }: HistoryProps) {
         players: game.players,
         scores: game.scores,
         totalScores: game.totalScores,
-        wolfScores: game.wolfScores,
-        game: game,
+        game6pointScores: game.game6pointScores,
       });
     }
   };
@@ -82,7 +81,12 @@ export function History({ navigation }: HistoryProps) {
             ]}>
             <Card.Content>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={styles.historyDate}>{new Date(p.date).toLocaleString()}</Text>
+                <View>
+                  <Text style={styles.historyDate}>{new Date(p.date).toLocaleString()}</Text>
+                  <Text style={{ color: theme.colors.primary, fontWeight: 'bold', fontSize: 14 }}>
+                    {i18n.t(`game${p.gameType || '6point'}`)}
+                  </Text>
+                </View>
                 {p.inProgress && p.currentHole && p.holes && (
                   <View style={{ 
                     backgroundColor: theme.colors.secondary, 
@@ -98,7 +102,7 @@ export function History({ navigation }: HistoryProps) {
               </View>
               {p.players.map((pl: string) => (
                 <Text key={pl} style={styles.historyPlayer}>
-                  {pl} – <Text style={{ fontWeight: 'bold' }}>{p.wolfScores[pl]} 🦉</Text> ({p.totalScores[pl] > 0 ? '+' + p.totalScores[pl] : p.totalScores[pl]})
+                  {pl} – <Text style={{ fontWeight: 'bold' }}>{p.game6pointScores[pl]} 🦉</Text> ({p.totalScores[pl] > 0 ? '+' + p.totalScores[pl] : p.totalScores[pl]})
                 </Text>
               ))}
               <View style={[styles.historyActions, { flexDirection: 'column' }]}>

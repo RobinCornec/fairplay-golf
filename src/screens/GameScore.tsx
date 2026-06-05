@@ -9,8 +9,8 @@ import { i18n } from '../localization';
 import { 
   scoreValue, 
   calculateTotalScores, 
-  calculateWolfScores, 
-  adjustWolfScores,
+  calculateGame6pointScores,
+  adjustGame6pointScores,
   formatScoreLabel
 } from '../utils';
 import {RootStackParamList, GameData, HoleScore, ScoreLabel} from '../types';
@@ -23,7 +23,7 @@ type GameScoreProps = {
 };
 
 export function GameScore({ route, navigation }: GameScoreProps) {
-  const { players, holes, game } = route.params;
+  const { players, holes, game, gameType } = route.params;
   const [currentHole, setCurrentHole] = useState(game?.currentHole || 1);
   const [scores, setScores] = useState<HoleScore[]>(
     game?.scores || 
@@ -38,8 +38,8 @@ export function GameScore({ route, navigation }: GameScoreProps) {
   const [rulesVisible, setRulesVisible] = useState(false);
 
   const totalScores = calculateTotalScores(players, scores);
-  const wolfScores = calculateWolfScores(players, scores);
-  const adjustedWolfScores = adjustWolfScores(players, wolfScores);
+  const game6pointScores = calculateGame6pointScores(players, scores);
+  const adjustedGame6pointScores = adjustGame6pointScores(players, game6pointScores);
 
   // Auto-save when scores change
   useEffect(() => {
@@ -55,10 +55,11 @@ export function GameScore({ route, navigation }: GameScoreProps) {
       players,
       scores,
       totalScores,
-      wolfScores: adjustedWolfScores,
+      game6pointScores: adjustedGame6pointScores,
       inProgress: !isCompleted,
       holes,
       currentHole,
+      gameType: gameType || game?.gameType || '6point',
     };
 
     try {
@@ -92,7 +93,7 @@ export function GameScore({ route, navigation }: GameScoreProps) {
         players,
         scores,
         totalScores,
-        wolfScores: adjustedWolfScores,
+        game6pointScores: adjustedGame6pointScores,
       });
     }
   };
@@ -286,7 +287,7 @@ export function GameScore({ route, navigation }: GameScoreProps) {
                   {i18n.t('scores')}: {totalScores[player] > 0 ? '+' + totalScores[player] : totalScores[player]}
                 </Text>
                 <Text style={[styles.recapScoreValue, { color: theme.colors.primary }]}>
-                  {adjustedWolfScores[player]} 🦉
+                  {adjustedGame6pointScores[player]} 🦉
                 </Text>
               </View>
             ))}

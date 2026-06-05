@@ -64,7 +64,7 @@ export function SplashScreen({ navigation }: SplashScreenProps) {
       </Animated.View>
 
       <Animated.Text style={[styles.appName, { opacity: textFadeAnim }]}>
-        gwolf app
+        FairPlay
       </Animated.Text>
     </View>
   );

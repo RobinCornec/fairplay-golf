@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { Text, Card, Title, Paragraph, IconButton } from 'react-native-paper';
+import {Text, Card, Title, Paragraph, IconButton, PaperProvider, Portal, Modal, Button} from 'react-native-paper';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from '../styles';
 import { i18n } from '../localization';
@@ -25,7 +25,7 @@ export function Home({ navigation }: HomeProps) {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text variant="headlineMedium" style={[styles.title, { marginTop: 20, marginBottom: 40 }]}>
-        GWolf
+        FairPlay
       </Text>
 
       <View style={localStyles.cardContainer}>
@@ -37,9 +37,9 @@ export function Home({ navigation }: HomeProps) {
           <Card style={[styles.recapCard, { borderLeftWidth: 5, borderLeftColor: theme.colors.primary, marginBottom: 0 }]}>
             <Card.Content>
               <View style={localStyles.cardHeader}>
-                <Title style={{ color: theme.colors.primary, flex: 1 }}>{i18n.t('game_6point')}</Title>
+                <Text variant="titleLarge" style={{ color: theme.colors.primary, flex: 1 }}>{i18n.t('game6point')}</Text>
               </View>
-              <Paragraph>{i18n.t('game_6point_description')}</Paragraph>
+              <Text variant="bodyMedium">{i18n.t('game6pointDescription')}</Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -52,6 +52,17 @@ export function Home({ navigation }: HomeProps) {
         />
       </View>
 
+      <View style={[localStyles.cardContainer, { marginTop: 20 }]}>
+        <View style={{ flex: 1 }}>
+          <Card style={[styles.recapCard, localStyles.disabledCard]}>
+            <Card.Content>
+              <Text variant="titleLarge" style={localStyles.disabledText}>{i18n.t('comingSoon')}</Text>
+              <Text variant="bodyMedium" style={localStyles.disabledText}>{i18n.t('newGamesSoon')}</Text>
+            </Card.Content>
+          </Card>
+        </View>
+      </View>
+
       <TouchableOpacity 
         onPress={() => navigation.navigate('History')}
         activeOpacity={0.7}
@@ -59,8 +70,8 @@ export function Home({ navigation }: HomeProps) {
       >
         <Card style={styles.recapCard}>
           <Card.Content>
-            <Title>{i18n.t('history')}</Title>
-            <Paragraph>{i18n.t('seeHistory')}</Paragraph>
+            <Text variant="titleLarge" >{i18n.t('history')}</Text>
+            <Text variant="bodyMedium">{i18n.t('seeHistory')}</Text>
           </Card.Content>
         </Card>
       </TouchableOpacity>
@@ -85,5 +96,17 @@ const localStyles = StyleSheet.create({
     right: 5,
     top: 5,
     zIndex: 1,
+  },
+  disabledCard: {
+    backgroundColor: '#f5f5f5',
+    borderLeftWidth: 5,
+    borderLeftColor: '#bdbdbd',
+    elevation: 0,
+    shadowOpacity: 0,
+    opacity: 0.8,
+    marginBottom: 0,
+  },
+  disabledText: {
+    color: '#9e9e9e',
   },
 });

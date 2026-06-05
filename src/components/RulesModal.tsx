@@ -12,24 +12,24 @@ interface RulesModalProps {
 
 const GAME_RULES: Record<string, string[]> = {
   '6point': [
-    'rules_6point_players',
-    'rules_6point_totalPoints',
-    'rules_6point_distributions',
-    'rules_6point_bestScore',
-    'rules_6point_tie',
-    'rules_6point_worstScore',
-    'rules_6point_end'
+    'rules6pointPlayers',
+    'rules6pointTotalPoints',
+    'rules6pointBestScore',
+    'rules6pointTie',
+    'rules6pointDistributions',
+    'rules6pointWorstScore',
+    'rules6pointEnd'
   ]
 };
 
 const RULE_ICONS: Record<string, string> = {
-  'rules_6point_players': 'account-group',
-  'rules_6point_totalPoints': 'numeric-6-circle-outline',
-  'rules_6point_distributions': 'format-list-bulleted',
-  'rules_6point_bestScore': 'trophy-outline',
-  'rules_6point_tie': 'equal',
-  'rules_6point_worstScore': 'trending-down',
-  'rules_6point_end': 'flag-checkered'
+  'rules6pointPlayers': 'account-group',
+  'rules6pointTotalPoints': 'numeric-6-circle-outline',
+  'rules6pointBestScore': 'trophy-outline',
+  'rules6pointTie': 'equal',
+  'rules6pointDistributions': 'format-list-bulleted',
+  'rules6pointWorstScore': 'trending-down',
+  'rules6pointEnd': 'flag-checkered'
 };
 
 export function RulesModal({ visible, onDismiss, gameType = '6point' }: RulesModalProps) {
