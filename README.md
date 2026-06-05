@@ -1,6 +1,10 @@
 # FairPlay Golf
 
-A mobile application to track golf scores with the "Chouette" points system.
+A mobile application to track golf scores with multiple game systems.
+
+## Available games
+
+- **6 points** (Owl)
 
 ## Project Structure
 
@@ -35,11 +39,12 @@ fairplay-golf/
 
 ## Features
 
-- Game configuration with 3 players
+- Support for multiple game modes (including the "Chouette/Owl" system)
+- Game configuration with custom player setup
 - Score entry for 9 or 18 holes with a modern card-based UI
 - Support for custom scores beyond standard golf scoring
 - Color-coded score buttons for better visual feedback
-- Automatic calculation of "Chouette" points
+- Automatic calculation of game points (Chouette, etc.)
 - Game summary with medals and detailed hole-by-hole analysis
 - History of played games with the ability to view past games
 - Responsive design that adapts to different screen sizes
