@@ -2,7 +2,7 @@
   "expo": {
     "name": "FairPlay Golf",
     "slug": "fairplay-golf",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "scheme": "fairplay",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,17 +18,18 @@
     },
     "android": {
       "package": "com.robincornec.gwolf",
-      "versionCode": 4,
+      "versionCode": 5,
       "permissions": [],
-      "edgeToEdgeEnabled": true,
+      "edgeToEdgeEnabled": true
     },
     "plugins": [
       "expo-localization",
-      "expo-asset"
+      "expo-asset",
+      "expo-font"
     ],
     "extra": {
       "eas": {
-        "projectId": "f00cad9b-9812-4e7e-b485-a079db0931d5"
+        "projectId": "ec5ba325-f8c3-4882-a61a-4a656a8c3cc2"
       }
     },
     "owner": "robincornec"
