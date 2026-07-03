@@ -102,7 +102,7 @@ export function History({ navigation }: HistoryProps) {
               </View>
               {p.players.map((pl: string) => (
                 <Text key={pl} style={styles.historyPlayer}>
-                  {pl} – <Text style={{ fontWeight: 'bold' }}>{p.game6pointScores[pl]} 🦉</Text> ({p.totalScores[pl] > 0 ? '+' + p.totalScores[pl] : p.totalScores[pl]})
+                  {pl} – <Text style={{ fontWeight: 'bold' }}>{(p.game6pointScores?.[pl] || 0)} 🦉</Text> ({(p.totalScores?.[pl] || 0) > 0 ? '+' + (p.totalScores?.[pl] || 0) : (p.totalScores?.[pl] || 0)})
                 </Text>
               ))}
               <View style={[styles.historyActions, { flexDirection: 'column' }]}>

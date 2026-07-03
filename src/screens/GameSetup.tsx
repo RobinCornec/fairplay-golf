@@ -123,14 +123,14 @@ export function GameSetup({ navigation }: GameSetupProps) {
           />
           <Card.Content>
             <Text style={styles.subtitle}>
-              {new Date(inProgressGame.date).toLocaleDateString()} - {i18n.t('hole')} {inProgressGame.currentHole}/{inProgressGame.holes}
+              {inProgressGame.date ? new Date(inProgressGame.date).toLocaleDateString() : ''} - {i18n.t('hole')} {inProgressGame.currentHole || 0}/{inProgressGame.holes || 0}
             </Text>
             <View style={styles.gridRow}>
               {inProgressGame.players.map(player => (
                 <View key={player} style={styles.gridCol}>
                   <Text style={styles.playerName}>{player}</Text>
                   <Text style={styles.historyPlayer}>
-                    <Text style={{ fontWeight: 'bold' }}>{inProgressGame.game6pointScores[player]} 🦉</Text> ({inProgressGame.totalScores[player] > 0 ? '+' + inProgressGame.totalScores[player] : inProgressGame.totalScores[player]})
+                    <Text style={{ fontWeight: 'bold' }}>{(inProgressGame.game6pointScores?.[player] || 0)} 🦉</Text> ({(inProgressGame.totalScores?.[player] || 0) > 0 ? '+' + (inProgressGame.totalScores?.[player] || 0) : (inProgressGame.totalScores?.[player] || 0)})
                   </Text>
                 </View>
               ))}

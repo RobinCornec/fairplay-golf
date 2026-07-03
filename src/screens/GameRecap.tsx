@@ -17,8 +17,8 @@ type GameRecapProps = {
 export function GameRecap({ route, navigation }: GameRecapProps) {
   const { players, scores, totalScores, game6pointScores } = route.params;
 
-  const sortedPlayers = [...players].sort((a, b) => game6pointScores[b] - game6pointScores[a]);
-  const playerMedals = getMedals(players, game6pointScores);
+  const sortedPlayers = [...players].sort((a, b) => (game6pointScores?.[b] || 0) - (game6pointScores?.[a] || 0));
+  const playerMedals = getMedals(players, game6pointScores || {});
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -33,10 +33,10 @@ export function GameRecap({ route, navigation }: GameRecapProps) {
               <View key={player} style={styles.recapPlayerCol}>
                 <Text style={styles.playerName}>{player}</Text>
                 <Text style={cardStyles.scoreText}>
-                  {i18n.t('scores')}: {totalScores[player] > 0 ? '+' + totalScores[player] : totalScores[player]}
+                  {i18n.t('scores')}: {(totalScores?.[player] || 0) > 0 ? '+' + (totalScores?.[player] || 0) : (totalScores?.[player] || 0)}
                 </Text>
                 <Text style={[styles.recapScoreValue, { color: theme.colors.primary }]}>
-                  {playerMedals[player]} {game6pointScores[player]} 🦉
+                  {playerMedals[player]} {(game6pointScores?.[player] || 0)} 🦉
                 </Text>
               </View>
             ))}
